@@ -25,7 +25,7 @@ class App extends Component {
           { this.state.todos.map( (todo, index) =>
             <ToDo key={ index } description={ todo.description } isCompleted={ todo.isCompleted } />
           )}
-          
+
         </ul>
       </div>
     );

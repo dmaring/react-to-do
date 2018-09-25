@@ -15,6 +15,22 @@ class App extends Component {
     };
   }
 
+  deleteTodo(index) {
+    // create a copy of the todos list to modify
+    const todos = this.state.todos.slice();
+    // grab the todo to be deleted
+    const todo = todos[index];
+    let newList;
+    if (todo === todos[0]) {
+      newList = todos.slice(1, todos.length)
+    }
+    else {
+      newList =
+        todos.slice(0, index - 1).join(todos.slice(index, todos.length));
+    }
+    this.setState({ todos: newList })
+  }
+
   toggleComplete(index) {
     // create a copy of the todos list to modify
     const todos = this.state.todos.slice();
@@ -43,7 +59,7 @@ class App extends Component {
       <div className="App">
         <ul>
           { this.state.todos.map( (todo, index) =>
-            <ToDo key={ index } description={ todo.description } isCompleted={ todo.isCompleted } toggleComplete={ () => this.toggleComplete(index) } />
+            <ToDo key={ index } description={ todo.description } isCompleted={ todo.isCompleted } toggleComplete={ () => this.toggleComplete(index) } deleteTodo={ () => this.deleteTodo(index) }/>
           )}
         </ul>
         <form onSubmit={ (e) => this.handleSubmit(e) }>

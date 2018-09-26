@@ -26,7 +26,7 @@ class App extends Component {
     }
     else {
       newList =
-        todos.slice(0, index - 1).join(todos.slice(index, todos.length));
+        todos.slice(0, index - 1).concat(todos.slice(index, todos.length));
     }
     this.setState({ todos: newList })
   }
